@@ -6,7 +6,7 @@ const styles= {
         color:"white",
         textAlign:"center",
         padding:"20px",
-        fontSize:40
+        fontSize:30
     }
 }
 export default function Header() {

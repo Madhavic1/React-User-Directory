@@ -57,23 +57,33 @@ export class DirectoryContainer extends Component {
     }
     render() {
         return (
+            
             <Container fluid="-fluid">
-                <Row>
-                    <Col size="sm-12">
-                <div>
-                    <Header />
-                    <SearchForm
-                        handleSearchEvent={this.handleSearchEvent}
-                        handleInputChange={this.handleInputChange}
-                        handleShowAll={this.handleShowAll}
-                    />
-                    <br />
-                    {(!this.state.noResults) ? (
-                        <RenderResults results={this.state.filteredResults} sortByName={this.sortByName} sortByDOB={this.sortByDOB} />
-                    ) : (<h3>No Results Found</h3>)}
-                </div>
-                </Col>
-                </Row>
+                    <Row>
+                        <Col size="12">
+                            <Header />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col size="12">
+                            <SearchForm
+                                handleSearchEvent={this.handleSearchEvent}
+                                handleInputChange={this.handleInputChange}
+                                handleShowAll={this.handleShowAll}
+                            />
+                             <br />
+                             {!this.state.noResults &&
+                             <small style={{fontSize:"x-small"}}>Click on Name or DOB headings to sort the data</small> }
+                        </Col>
+                    </Row>
+                  
+                    <Row>
+                        <Col size="12">
+                            {(!this.state.noResults) ? (
+                                <RenderResults results={this.state.filteredResults} sortByName={this.sortByName} sortByDOB={this.sortByDOB} />
+                            ) : (<h3>No Results Found</h3>)}
+                        </Col>
+                    </Row>
             </Container>
         )
     }

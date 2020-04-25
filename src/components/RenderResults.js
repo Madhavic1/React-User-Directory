@@ -1,15 +1,7 @@
 import React from 'react'
 
 export default function RenderResults(props) {
-    // const linkButton= {
-    //     backgroundColor: "transparent",
-    //     border: "none",
-    //     cursor: "pointer",
-    //     textDecoration: "underline",
-    //     display: "inline",
-    //     margin: "0",
-    //     padding: "0"
-    //   }
+
       const labelColor = {
           color:"#007BFF"
       }
@@ -21,13 +13,6 @@ console.log(props.results);
                     <th scope="col" style={labelColor}>Image</th>
                     <th scope="col">
                         <a  href="#" onClick={props.sortByName}>Name</a>
-                        {/* <button
-                            type="button"
-                            className={linkButton}
-                            onClick={props.sortByName}>
-                            Name
-                        </button> */}
-
                     </th>
                     <th scope="col" style={labelColor}>Phone</th>
                     <th scope="col" style={labelColor}>Email</th>
@@ -39,7 +24,7 @@ console.log(props.results);
             <tbody>
                 { props.results.map((result,index) => (
                     <tr key={index}>
-                        <th scope="row">
+                        <th >
                             <img src={result.picture.thumbnail} alt="Mark's pic"></img>
                         </th>
                         <td>{result.name.first} {result.name.last}</td>

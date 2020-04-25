@@ -12,16 +12,10 @@ const styles= {
 }
 export default function Header() {
     return (
-        // <Container fluid="-fluid">
-        //     <Row>
-        //         <Col size="sm-12">
                     <div>
                         <header>
                             <h1 style={styles.headerStyle}>Employee  Directory</h1>
                         </header>
                     </div>
-        //         </Col>
-        //     </Row>
-        // </Container>
     );
 }

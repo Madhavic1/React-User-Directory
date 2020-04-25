@@ -1,4 +1,7 @@
 import React from 'react'
+import SearchFilter from './SearchFilter';
+import SearchInput from './SearchInput';
+import SearchPageButtons from './SearchPageButtons';
 
 class SearchForm extends React.Component {
     state = {
@@ -7,12 +10,10 @@ class SearchForm extends React.Component {
         serchOn: false
     }
 
-    handleFilterChange = (event) => {
-        event.preventDefault();
+    handleFilterChange = (filterValue) => {
         this.setState({
-            filterState: event.target.value
+            filterState: filterValue
         });
-        // this.displaySelectedFilterForm(this.state.filterState);
     }
 
     handleSearch = (event) => {
@@ -21,6 +22,9 @@ class SearchForm extends React.Component {
         console.log(searchVal)
         this.setState({ serchOn: true, search: "" });
         this.props.handleSearchEvent(this.state.filterState,searchVal);
+    }
+    handleSearchInput = (searchInput) => {
+        this.setState({ search: searchInput});
     }
 
     showAll = (event) => {
@@ -33,51 +37,20 @@ class SearchForm extends React.Component {
         return (
             <div>
                 <form className="form-inline">
-                    <div className="form-group">
-                        <div className="input-group">
-                            <label className="ml-3"> Filter By:</label>
-                            <select className="ml-2" value={this.state.filterState} onChange={this.handleFilterChange} >
-                                <option>Select</option>
-                                <option value="name">Name</option>
-                                <option value="email">Email</option>
-                            </select>
-                        </div>
-                    </div>
+                    <SearchFilter handleFilterChange={this.handleFilterChange}/>
+
                     {this.state.filterState === "email" &&
-                        <div className="form-group">
-                            <input
-                                className="form-control mr-sm-2 ml-5"
-                                type="text"
-                                placeholder="Employee email"
-                                aria-label="Search"
-                                value={this.state.search}
-                                onChange={(e) => this.setState({ search: e.target.value })} />
-                        </div>
-                    }
+                        <SearchInput placeholder="Employee Email" handleSearchInput={this.handleSearchInput}/> }
+
                     {this.state.filterState === "name" &&
-                        <div className="form-group">
-                            <input
-                                className="form-control mr-sm-2 ml-5"
-                                type="text"
-                                placeholder="Employee Name"
-                                aria-label="Search"
-                                value={this.state.search}
-                                onChange={(e) => this.setState({ search: e.target.value })} />
-                        </div>}
-                    {this.state.filterState !== "" &&
-                        <button
-                            className="btn btn-outline-primary ml-2 my-sm-0"
-                            type="submit"
-                            onClick={this.handleSearch}>
-                            Search
-                        </button>}
+                        <SearchInput placeholder="Employee Name" handleSearchInput={this.handleSearchInput}/> }
+
+                    {(this.state.filterState !== "") &&
+                        <SearchPageButtons onClick={this.handleSearch} label="Search"/> }
+
                     {this.state.serchOn &&
-                        <button
-                            className="btn btn-outline-primary ml-2 my-sm-0"
-                            type="submit"
-                            onClick={this.showAll}>
-                            Show All
-                    </button>}
+                    <SearchPageButtons onClick={this.showAll} label="Show All"/> }
+
                 </form>
             </div>
         );

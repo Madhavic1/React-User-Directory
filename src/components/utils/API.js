@@ -19,5 +19,18 @@ export default {
           comparison = -1;
         }
         return comparison;
+      },
+    compareByDOB : function(a, b) {
+      // Use toUpperCase() to ignore character casing
+      const dobA = a.dob.date.substring(0,10);
+      const dobB = b.dob.date.substring(0,10);
+    
+      let comparison = 0;
+      if (dobA > dobB) {
+        comparison = 1;
+      } else if (dobA < dobB) {
+        comparison = -1;
       }
+      return comparison;
+    }
 }

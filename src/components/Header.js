@@ -1,4 +1,7 @@
 import React from 'react'
+import Container from "./Container";
+import Row from "./Row";
+import Col from "./Col";
 
 const styles= {
     headerStyle:{
@@ -6,17 +9,22 @@ const styles= {
         color:"white",
         textAlign:"center",
         padding:"20px",
-        fontSize:30
+        fontSize:30,
+        fontFamily:"Roboto Slab"
     }
 }
 export default function Header() {
     return (
-        <div>
-            <header>
-                <p style={styles.headerStyle}>Employee Directory</p>
-               
-            </header>
-          
-        </div>
+        // <Container fluid="-fluid">
+        //     <Row>
+        //         <Col size="sm-12">
+                    <div>
+                        <header>
+                            <h1 style={styles.headerStyle}>Employee  Directory</h1>
+                        </header>
+                    </div>
+        //         </Col>
+        //     </Row>
+        // </Container>
     );
 }

@@ -1,23 +1,86 @@
 import React from 'react'
 
-export default function SearchForm() {
-    return (
-        <form className="form-inline">
-            <div className="form-group">
-                <div className="input-group">
-                    <div className="input-group-prepend">
-                        <span className="input-group-text">DOB</span>
-                    </div>
-                    <input type="date" className="form-control" name="from-date"/>
-                    <input type="date" className="form-control" name="to-date"/>
-                </div>
-            </div>
+class SearchForm extends React.Component {
+    state = {
+        search: "",
+        filterState: "",
+        serchOn: false
+    }
 
-            <div className="form-group">
-            <input className="form-control mr-sm-2 ml-5" type="search" placeholder="Search" aria-label="Search"/>
-            <button className="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+    handleFilterChange = (event) => {
+        event.preventDefault();
+        this.setState({
+            filterState: event.target.value
+        });
+        // this.displaySelectedFilterForm(this.state.filterState);
+    }
+
+    handleSearch = (event) => {
+        event.preventDefault();
+        let searchVal = this.state.search.trim().toLowerCase();
+        console.log(searchVal)
+        this.setState({ serchOn: true, search: "" });
+        this.props.handleSearchEvent(this.state.filterState,searchVal);
+    }
+
+    showAll = (event) => {
+        event.preventDefault();
+        this.setState({ filterState: "", serchOn:false });
+        this.props.handleShowAll();
+    }
+
+    render() {
+        return (
+            <div>
+                <form className="form-inline">
+                    <div className="form-group">
+                        <div className="input-group">
+                            <label className="ml-3"> Filter By:</label>
+                            <select className="ml-2" value={this.state.filterState} onChange={this.handleFilterChange} >
+                                <option>Select</option>
+                                <option value="name">Name</option>
+                                <option value="email">Email</option>
+                            </select>
+                        </div>
+                    </div>
+                    {this.state.filterState === "email" &&
+                        <div className="form-group">
+                            <input
+                                className="form-control mr-sm-2 ml-5"
+                                type="text"
+                                placeholder="Employee email"
+                                aria-label="Search"
+                                value={this.state.search}
+                                onChange={(e) => this.setState({ search: e.target.value })} />
+                        </div>
+                    }
+                    {this.state.filterState === "name" &&
+                        <div className="form-group">
+                            <input
+                                className="form-control mr-sm-2 ml-5"
+                                type="text"
+                                placeholder="Employee Name"
+                                aria-label="Search"
+                                value={this.state.search}
+                                onChange={(e) => this.setState({ search: e.target.value })} />
+                        </div>}
+                    {this.state.filterState !== "" &&
+                        <button
+                            className="btn btn-outline-primary ml-2 my-sm-0"
+                            type="submit"
+                            onClick={this.handleSearch}>
+                            Search
+                        </button>}
+                    {this.state.serchOn &&
+                        <button
+                            className="btn btn-outline-primary ml-2 my-sm-0"
+                            type="submit"
+                            onClick={this.showAll}>
+                            Show All
+                    </button>}
+                </form>
             </div>
-            
-        </form>
-    );
+        );
+    }
 }
+export default SearchForm;

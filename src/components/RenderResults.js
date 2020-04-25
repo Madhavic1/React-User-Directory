@@ -1,26 +1,44 @@
 import React from 'react'
 
 export default function RenderResults(props) {
+    // const linkButton= {
+    //     backgroundColor: "transparent",
+    //     border: "none",
+    //     cursor: "pointer",
+    //     textDecoration: "underline",
+    //     display: "inline",
+    //     margin: "0",
+    //     padding: "0"
+    //   }
+      const labelColor = {
+          color:"#007BFF"
+      }
 console.log(props.results);
     return (
         <table className="table">
             <thead>
                 <tr>
-                    <th scope="col">Image</th>
+                    <th scope="col" style={labelColor}>Image</th>
                     <th scope="col">
-                        Name
-                        </th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">DOB</th>
+                        <a  href="#" onClick={props.sortByName}>Name</a>
+                        {/* <button
+                            type="button"
+                            className={linkButton}
+                            onClick={props.sortByName}>
+                            Name
+                        </button> */}
+
+                    </th>
+                    <th scope="col" style={labelColor}>Phone</th>
+                    <th scope="col" style={labelColor}>Email</th>
+                    <th scope="col" style={labelColor}>
+                    <a  href="#" onClick={props.sortByDOB}>DOB</a>
+                    </th>
                 </tr>
             </thead>
             <tbody>
-                { props.results.map(result => (
-                    // <li className="list-group-item" key={result.id.value}>
-                    //     <img alt={result.name.first} className="img-fluid" src={result.picture.thumbnail} />
-                    // </li>
-                    <tr>
+                { props.results.map((result,index) => (
+                    <tr key={index}>
                         <th scope="row">
                             <img src={result.picture.thumbnail} alt="Mark's pic"></img>
                         </th>

@@ -19,7 +19,6 @@ class SearchForm extends React.Component {
     handleSearch = (event) => {
         event.preventDefault();
         let searchVal = this.state.search.trim().toLowerCase();
-        console.log(searchVal)
         this.setState({ serchOn: true, search: "" });
         this.props.handleSearchEvent(this.state.filterState,searchVal);
     }

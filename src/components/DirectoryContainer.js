@@ -19,7 +19,6 @@ export class DirectoryContainer extends Component {
     }
 
     handleSearchEvent = (selectedFilter, searchValue) => {
-        console.log("Selected filter is " + selectedFilter + " and searchValue is " + searchValue);
         this.setState({ searchValue: searchValue });
         var filteredData = (selectedFilter === "name") ?
             this.state.results.filter((result) => (result.name.first.toLowerCase() === searchValue || result.name.last.toLowerCase() === searchValue || (`${result.name.first.toLowerCase()} ${result.name.last.toLowerCase()}`) === searchValue)) :
@@ -30,10 +29,6 @@ export class DirectoryContainer extends Component {
         this.setState({ filteredResults: filteredData });
     }
 
-    handleInputChange = event => {
-        event.preventDefault();
-        console.log("handleInputChange method");
-    }
     handleShowAll = () => {
         this.setState({ noResults: false, filteredResults: this.state.results });
     }
@@ -68,7 +63,6 @@ export class DirectoryContainer extends Component {
                         <Col size="12">
                             <SearchForm
                                 handleSearchEvent={this.handleSearchEvent}
-                                handleInputChange={this.handleInputChange}
                                 handleShowAll={this.handleShowAll}
                             />
                              <br />

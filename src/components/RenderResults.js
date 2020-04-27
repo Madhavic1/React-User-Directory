@@ -5,7 +5,6 @@ export default function RenderResults(props) {
       const labelColor = {
           color:"#007BFF"
       }
-console.log(props.results);
     return (
         <table className="table">
             <thead>
